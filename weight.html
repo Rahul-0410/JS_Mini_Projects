@@ -1,0 +1,156 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* box-sizing: border-box; */
+            background: linear-gradient(to left top, yellow, lightblue, yellow);
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            color: darkcyan;
+        }
+
+        /* .main{
+            max-width: 450px;
+            margin: 0 auto;
+        } */
+        .main {
+            background: rgba(255, 255, 255, 0.3);
+            max-width: 450px;
+            /* width: 85%; */
+            margin: 100px auto;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+            border-radius: 10px
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        label{
+            font-size: 19px;
+            font-weight: 700;
+        }
+        input {
+            padding: 10px;
+            width: 70%;
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            border-radius: 10px;
+            outline: none;
+            color: darkgreen;
+        }
+        .input{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #kg{
+            color: darkcyan;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Weight Converter</h1>
+        <div class="input">
+            <label for="weight">Pounds: </label>
+        <input type="number" id="weight" name="weight">
+        </div>
+        
+
+        <p id="kg1">Your weight in kg is: <span id="kg"></span> </p>
+    </div>
+    <script>
+        let wt=document.getElementById("weight");
+        let output=document.getElementById("kg");
+        let output1=document.getElementById("kg1");
+        let errorTime;
+        let resTime;
+
+        function res(){
+            if(wt.value<=0 || isNan(wt.value)){
+                output1.innerText="Please enter a valid number!"
+                clearTimeout(errorTime);
+                errorTime=setTimeout(()=>{
+                    output1.innerText="";
+                    wt.innerText="";
+                },1000)
+            } else{
+                output.innerText=(+wt.value/2.2).toFixed(2);
+                clearTimeout(resTime);
+                resTime=setTimeout(()=>{
+                    output.innerText="";
+                    wt.innerText="";
+
+                },1000)
+            }
+        }
+        wt.addEventListener("input",res);
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Weight Converter</h1>
+        <div class="input-container">
+            <label for="pounds">Pounds:</label>
+            <input type="number" id="input" class="input" step=".1" placeholder="Enter number">
+        </div>
+        <p>Your weight in kg is: <span id="result"></span></p>
+        <p class="error" id="error"></p>
+    </div>
+    <script>
+        const inputEl = document.getElementById("input");
+        const errorEl = document.getElementById("error");
+        const resultEl = document.getElementById("result");
+        let errorTime;
+        let resultTime;
+        function updateResults() {
+            if (inputEl.value <= 0 || isNaN(inputEl.value)) {
+                errorEl.innerText = "Please enter a valid number!";
+                clearTimeout(errorTime);
+                errorTime = setTimeout(() => {
+                    errorEl.innerText = "";
+                    inputEl.value = "";
+                }, 2000);
+            } else {
+                resultEl.innerText = (+inputEl.value / 2.2).toFixed(2);
+                clearTimeout(resultTime);
+                resultTime = setTimeout(() => {
+                    resultEl.innerText = "";
+                    inputEl.value = "";
+                }, 10000);
+            }
+        }
+
+        inputEl.addEventListener("input", updateResults);
+    </script>
+</body>
+
+</html>
