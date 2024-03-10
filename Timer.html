@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: green;
+        }
+        div{
+            margin: 0 auto;
+            width: 30%;
+            text-align: center;
+        }
+        h1{
+            font-size: 36px;
+        }
+        p{
+            font-size: 24px;
+        }
+        button{
+            width: 60px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .bt1{
+            background-color: red;
+        }
+        .bt2{
+            background-color: blue;
+        }
+        .bt3{
+            background-color: violet;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Stopwatch</h1>
+        <p id="demo">25:00</p>
+        <button class="bt1" onclick="start()">Start</button>
+        <button class="bt2" onclick="stop()">Stop</button>
+        <button class="bt3" onclick="reset()">Reset</button>
+    </div>
+   
+    <script>
+        let i;
+        let sec = 0;
+        let min = 25;
+    
+        function start() {
+            i = setInterval(countDown, 1000);
+        }
+    
+        function countDown() {
+            let ob = document.getElementById("demo");
+            if (sec === 0 && min === 0) {
+                clearInterval(i);
+            } else {
+                if (sec === 0) {
+                    min--;
+                    sec = 59;
+                } else {
+                    sec--;
+                }
+                let minStr = min < 10 ? "0" + min : min;
+                let secStr = sec < 10 ? "0" + sec : sec;
+                ob.innerHTML = `${minStr}:${secStr}`;
+            }
+        }
+    
+        function stop() {
+            clearInterval(i);
+        }
+    
+        function reset() {
+            let ob = document.getElementById("demo");
+            sec = 0;
+            min = 25;
+            ob.innerHTML = "25:00";
+            clearInterval(i);
+        }
+    </script>
+    
+</body>
+</html>
